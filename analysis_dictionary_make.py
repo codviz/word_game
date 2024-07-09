@@ -12,11 +12,14 @@ def create_dict():
     while True:
         if analysis_words_file.readline():
             line_list = line.split(',')
+            line_list.pop(0)
             while 'NA' in line_list: line_list.remove('NA')
             while "NA\n" in line_list: line_list.remove('NA\n')
-            if int(line_list[3]) > 2:
-                if line_list[1] in most_used_list:
-                    analysis_words_dictionary[line_list[1]] = line_list[2:]
+            if int(line_list[2]) > 2:
+                if check_years(line_list):
+                    print(line_list)
+                    if line_list[0] in most_used_list:
+                        analysis_words_dictionary[line_list[1]] = line_list[2:]
             line = analysis_words_file.readline()
         else:
             break
@@ -25,3 +28,15 @@ def create_dict():
     analysis_words_file.close()
     
     return analysis_words_dictionary
+
+def check_years(line_list):
+    start_pos = int(line_list[2]) + 3
+    unique_values = 1
+    for i in range(int(line_list[2]) - 1):
+        if int(line_list[start_pos + 1]) != int(line_list[start_pos]):
+            start_pos += 1
+            unique_values += 1
+    if unique_values >= 3:
+        return True
+    else:
+        return False
