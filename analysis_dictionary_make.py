@@ -17,9 +17,8 @@ def create_dict():
             while "NA\n" in line_list: line_list.remove('NA\n')
             if int(line_list[2]) > 2:
                 if check_years(line_list):
-                    print(line_list)
                     if line_list[0] in most_used_list:
-                        analysis_words_dictionary[line_list[1]] = line_list[2:]
+                        analysis_words_dictionary[line_list[0]] = line_list[1:]
             line = analysis_words_file.readline()
         else:
             break
