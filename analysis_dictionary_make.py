@@ -6,20 +6,18 @@ def create_dict():
 
     analysis_words_file = open(r"data/changemeanings_emotion.csv","r")
     analysis_words_dictionary = {}
-    for i in range(2):
-        line = analysis_words_file.readline()
+    analysis_words_file.readline()
     
     while True:
-        if analysis_words_file.readline():
+        line = analysis_words_file.readline()
+        if line:
             line_list = line.split(',')
             line_list.pop(0)
             while 'NA' in line_list: line_list.remove('NA')
             while "NA\n" in line_list: line_list.remove('NA\n')
             if int(line_list[2]) > 2:
-                if check_years(line_list):
-                    if line_list[0] in most_used_list:
-                        analysis_words_dictionary[line_list[0]] = line_list[1:]
-            line = analysis_words_file.readline()
+                if line_list[0] in most_used_list:
+                    analysis_words_dictionary[line_list[0]] = line_list[1:]
         else:
             break
 
@@ -28,6 +26,8 @@ def create_dict():
     
     return analysis_words_dictionary
 
+
+####Broken, working on fixing currently
 def check_years(line_list):
     start_pos = int(line_list[2]) + 3
     unique_values = 1
