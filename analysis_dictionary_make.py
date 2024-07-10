@@ -9,7 +9,6 @@ def create_dict():
     analysis_words_file.readline()
 
     most_used_file.close()
-    counter = 1
     
     while True:
         line = analysis_words_file.readline()
