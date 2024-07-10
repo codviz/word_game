@@ -21,7 +21,6 @@ def create_dict():
             if int(line_list[2]) > 2:
                 if check_years(line_list):
                     if line_list[0] in most_used_list:
-                        print(line_list)
                         analysis_words_dictionary[line_list[0]] = line_list[1:]
         else:
             break
